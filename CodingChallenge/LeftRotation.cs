@@ -12,7 +12,7 @@ namespace CodingChallenge
             int n = a.Length;
             if (n <= 1) return a;
 
-            int t = d % n; // remove unnessesay 
+            int t = d % n;  // reduce circular loop
             for (int i = 0; i < t; i++)
             {
                 int start = a[0];
@@ -50,6 +50,28 @@ namespace CodingChallenge
             }
             a[n - 1] = start;
         }
+
+        /*
+         * This solution is coming from big data scientist, O(n) on time complexity a bit out of software developer concept
+         */
+        public int[] CalculateDirectPosition(int[] a, int d)
+        {
+
+            int n = a.Length;
+            if (n == 1) return a;
+            int[] arr = new int[n];
+            int t = d % n; // reduce circular loop
+
+
+            for (int i = 0; i < n; i++)
+            {
+                int pos = (i + (n - t)) % n;
+                //Console.WriteLine(pos);
+                arr[pos] = a[i];
+            }
+            return arr;
+        }
+
 
     }
 }
