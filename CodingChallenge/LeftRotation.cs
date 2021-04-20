@@ -1,6 +1,30 @@
 ﻿using System;
 namespace CodingChallenge
 {
+    /* definition original array is ordered by sequencial interger d is how many times left shifting the int array
+     * Approach 1
+     * 1. to reduce the circulaer shift repeated, shift frequence should be d % array.Length
+     * 2. store the the position 0 value in a temperary place e.g. temp = a[0]
+     *    loop through the array from the postion 1, assign a[j-1] = a[j] and assign a[n-1] = temp (inner loop)
+     * 3. repeat step 2 -> (d % array.Length) times (outer loop) 
+     * 
+     * Approach 2
+     * 1. to reduce the circulaer shift repeated, shift frequence should be d % array.Length
+     * 2. create a method to take array and d % array.Length as parameter
+     *    store the the position 0 value in a temperary place e.g. temp = a[0]
+     *    loop through the array from the postion 1, assign a[j-1] = a[j] and assign a[n-1] = temp 
+     *   
+     * 3. in side the method call itself agaain and pass the 2nd parmeter decrease by 1 until the 2nd parameter 
+     *    equals to 0 then return
+     * 
+     * Approach 3 (this is is more like big data scientist solution time complixity O(n)
+     * 1. to reduce the circulaer shift repeated, shift frequence should be t (d % array.Length)
+     * 2. create a new array with the same input array length 
+     * 3. loop through the array and calculated the new position for a[i] then assign newArray[position] value 
+     *    new position = (i + (n - t)) % n. e.g a[1,2,3,4,5] left shift 4 times for "1" should move to position (0+(5-4))%n) = 1
+     *    ,"4" should move to position (3+(5-4))%5 = 4
+     * 
+     */
     public class LeftRotation
     {
         public LeftRotation()
@@ -33,22 +57,31 @@ namespace CodingChallenge
             if (n == 1) return a;
 
             int t = d % n;
-            for (int i = 0; i < t; i++)
+
+            if (d != 0)
             {
-                leftRotateByOne(a, n);
+                leftRotateByOne(a, d);
             }
+            
             return a;
+           
         }
 
-        private void leftRotateByOne(int[] a, int n)
+        private void leftRotateByOne(int[] a, int d)
         {
             int start = a[0];
 
-            for (int i = 0; i < n - 1; i++)
+            for (int i = 1; i < a.Length; i++)
             {
-                a[i] = a[i + 1];
+                a[i-1] = a[i];
             }
-            a[n - 1] = start;
+            a[a.Length - 1] = start;
+            d--;
+            if (d != 0)
+            {
+                leftRotateByOne(a, d);
+            }
+            return;
         }
 
         /*
@@ -129,10 +162,20 @@ namespace CodingChallenge
         public void TestAll(int[]input, int[]expected, int d)
         {
 
-            TestLooping((int[])input.Clone(), expected, d);
-            TestRecursive((int[])input.Clone(), expected, d);
-            TestRecursive((int[])input.Clone(), expected, d);
+            TestLooping(DeepClone(input), expected, d);
+            TestRecursive(DeepClone(input), expected, d);
+            TestDirectPosition(DeepClone(input), expected, d);
 
+        }
+
+        private int[] DeepClone(int[] a)
+        {
+            int[] newArr = new int[a.Length];
+            for(int i=0; i<a.Length; i++)
+            {
+                newArr[i] = a[i];
+            }
+            return newArr;
         }
 
         public void TestCase1()
