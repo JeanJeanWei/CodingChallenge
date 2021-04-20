@@ -7,7 +7,7 @@ namespace CodingChallenge
         static void Main(string[] args)
         {
             LeftRotation leftRotation = new LeftRotation();
-            leftRotation.TestCase1();
+            leftRotation.TestCase2();
             
         }
 

@@ -72,14 +72,50 @@ namespace CodingChallenge
             return arr;
         }
 
-        private void Test(int[]input, int[]expected)
+        public void TestLooping(int[] input, int[] expected, int d)
+        {
+            bool success = true;
+            int[] output = Looping(input, d);
+
+            Console.WriteLine("Use nested loop time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
+                if (output[i] != expected[i])
+                {
+                    success = false;
+                }
+            }
+            Console.WriteLine(success ? "Success" : "Fail");
+            Console.WriteLine();
+        }
+
+        public void TestRecursive(int[] input, int[] expected, int d)
+        {
+            bool success = true;
+            int[] output = Recursive(input, d);
+
+            Console.WriteLine("Use recursive method time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
+                if (output[i] != expected[i])
+                {
+                    success = false;
+                }
+            }
+            Console.WriteLine(success ? "Success" : "Fail");
+            Console.WriteLine();
+        }
+
+        public void TestDirectPosition(int[] input, int[] expected, int d)
         {
 
+            Console.WriteLine("Use calculate direct position time complexity O(ArrayLength)");
             bool success = true;
-            int[] output = Looping(input, 4);
+            int[] output = CalculateDirectPosition(input, d);
             for (int i = 0; i < output.Length; i++)
             {
-                Console.WriteLine("Use nested loop time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
                 Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
                 if (output[i] != expected[i])
                 {
@@ -88,39 +124,13 @@ namespace CodingChallenge
             }
             Console.WriteLine(success ? "Success" : "Fail");
             Console.WriteLine();
+        }
+        private void TestAll(int[]input, int[]expected, int d)
+        {
 
-            // reset inputs
-            input = new int[] { 1, 2, 3, 4, 5 };
-            success = true;
-            output = Recursive(input, 4);
-
-            for (int i = 0; i < output.Length; i++)
-            {
-                Console.WriteLine("Use recursive method time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
-                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
-                if (output[i] != expected[i])
-                {
-                    success = false;
-                }
-            }
-            Console.WriteLine(success ? "Success" : "Fail");
-            Console.WriteLine();
-
-            //reset inputs
-            input = new int[] { 1, 2, 3, 4, 5 };
-            success = true;
-            output = CalculateDirectPosition(input, 4);
-            for (int i = 0; i < output.Length; i++)
-            {
-                Console.WriteLine("Use calculate direct position time complexity O(ArrayLength)");
-                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
-                if (output[i] != expected[i])
-                {
-                    success = false;
-                }
-            }
-            Console.WriteLine(success ? "Success" : "Fail");
-            Console.WriteLine();
+            TestLooping((int[])input.Clone(), expected, d);
+            TestRecursive((int[])input.Clone(), expected, d);
+            TestRecursive((int[])input.Clone(), expected, d);
 
         }
 
@@ -129,7 +139,15 @@ namespace CodingChallenge
             int[] input = new int[] { 1, 2, 3, 4, 5 };
             int[] expected = new int[] { 5, 1, 2, 3, 4 };
 
-            Test(input, expected);
+            TestAll(input, expected, 4);
+        }
+
+        public void TestCase2()
+        {
+            int[] input = new int[] { 41, 73, 89, 7, 10, 1, 59, 58, 84, 77, 77, 97, 58, 1, 86, 58, 26, 10, 86, 51 };
+            int[] exp = new int[] { 77, 97, 58, 1, 86, 58, 26, 10, 86, 51, 41, 73, 89, 7, 10, 1, 59, 58, 84, 77};
+
+            TestAll(input, exp, 10);
         }
 
     }
