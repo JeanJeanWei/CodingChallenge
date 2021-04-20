@@ -52,7 +52,7 @@ namespace CodingChallenge
         }
 
         /*
-         * This solution is coming from big data scientist, O(n) on time complexity a bit out of software developer concept
+         * This solution is coming from a big data scientist, O(n) on time complexity a bit out of box from software developer concept
          */
         public int[] CalculateDirectPosition(int[] a, int d)
         {
@@ -72,6 +72,59 @@ namespace CodingChallenge
             return arr;
         }
 
+        public void TestCase1()
+        {
+            bool success = true;
+            int[] input = new int[] { 1, 2, 3, 4, 5 };
+            int[] expected = new int[] { 5, 1, 2, 3, 4 };
+           
+            int[] output = Looping(input, 4);
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine("Use nested loop time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
+                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
+                if (output[i] != expected[i])
+                {
+                    success = false;
+                }
+            }
+            Console.WriteLine(success ? "Success" : "Fail");
+            Console.WriteLine();
+
+            // reset inputs
+            input = new int[] { 1, 2, 3, 4, 5 };
+            success = true;
+            output = Recursive(input, 4);
+            
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine("Use recursive method time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
+                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
+                if (output[i] != expected[i])
+                {
+                    success = false;
+                }
+            }
+            Console.WriteLine(success ? "Success" : "Fail");
+            Console.WriteLine();
+
+            //reset inputs
+            input = new int[] { 1, 2, 3, 4, 5 };
+            success = true;
+            output = CalculateDirectPosition(input, 4);
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine("Use calculate direct position time complexity O(ArrayLength)");
+                Console.WriteLine("output: " + output[i] + "  " + "Expected: " + expected[i]);
+                if (output[i] != expected[i])
+                {
+                    success = false;
+                }
+            }
+            Console.WriteLine(success ? "Success" : "Fail");
+            Console.WriteLine();
+
+        }
 
     }
 }
