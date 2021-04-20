@@ -72,12 +72,10 @@ namespace CodingChallenge
             return arr;
         }
 
-        public void TestCase1()
+        private void Test(int[]input, int[]expected)
         {
+
             bool success = true;
-            int[] input = new int[] { 1, 2, 3, 4, 5 };
-            int[] expected = new int[] { 5, 1, 2, 3, 4 };
-           
             int[] output = Looping(input, 4);
             for (int i = 0; i < output.Length; i++)
             {
@@ -95,7 +93,7 @@ namespace CodingChallenge
             input = new int[] { 1, 2, 3, 4, 5 };
             success = true;
             output = Recursive(input, 4);
-            
+
             for (int i = 0; i < output.Length; i++)
             {
                 Console.WriteLine("Use recursive method time complexity O(ArrayLength*(rotateTimes%ArrayLength)");
@@ -124,6 +122,14 @@ namespace CodingChallenge
             Console.WriteLine(success ? "Success" : "Fail");
             Console.WriteLine();
 
+        }
+
+        public void TestCase1()
+        {
+            int[] input = new int[] { 1, 2, 3, 4, 5 };
+            int[] expected = new int[] { 5, 1, 2, 3, 4 };
+
+            Test(input, expected);
         }
 
     }
