@@ -125,7 +125,8 @@ namespace CodingChallenge
             Console.WriteLine(success ? "Success" : "Fail");
             Console.WriteLine();
         }
-        private void TestAll(int[]input, int[]expected, int d)
+
+        public void TestAll(int[]input, int[]expected, int d)
         {
 
             TestLooping((int[])input.Clone(), expected, d);
