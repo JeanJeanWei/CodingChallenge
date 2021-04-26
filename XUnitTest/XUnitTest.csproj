@@ -20,4 +20,12 @@
   <ItemGroup>
     <ProjectReference Include="..\CodingChallenge\CodingChallenge.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="MinSwapTest1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MinSwapTest1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
