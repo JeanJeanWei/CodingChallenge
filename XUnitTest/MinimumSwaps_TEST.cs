@@ -17,7 +17,7 @@ namespace XUnitTest
             int[] arr = Array.ConvertAll(input.Split(' '), temp => Convert.ToInt32(temp));
             MinimumSwaps ms = new MinimumSwaps();
             int result = ms.MinSwapsDirect(arr);
-
+            //0.015 seconds for array size 100000
             Assert.Equal(result.ToString(), expected);
         }
 
@@ -27,7 +27,7 @@ namespace XUnitTest
             int[] arr = Array.ConvertAll(input.Split(' '), temp => Convert.ToInt32(temp));
             MinimumSwaps ms = new MinimumSwaps();
             int result = ms.MinSwapsCompareToOrderedArray(arr);
-            // 7 second for large number 
+            // 7 seconds for for array size 100000
             Assert.Equal(result.ToString(), expected);
         }
 

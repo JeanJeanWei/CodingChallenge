@@ -6,6 +6,18 @@ namespace CodingChallenge
         public MinimumSwaps()
         {
         }
+        /*
+         * Approach 1: O(N)
+         * 1. scann the array, if the the value is not in the right position, swap the value to correct postion
+         * 2. else preceed to next postion
+         * 
+         * Approach 2 O(Nlog(N) + N)
+         * 1. Create a sorted array
+         * 2. swap the element by comparing to the sorted array posion and value
+         * 3. scan the arry to find the correct postion and do the swap 
+         *   (in the UnitTest project you can see the time consuming difference if the input array is big)
+         * 
+         */
 
         public int MinSwapsDirect(int[] arr)
         {
@@ -66,7 +78,7 @@ namespace CodingChallenge
             arr[i] = arr[j];
             arr[j] = temp;
         }
-        // search through array skiped the already sorted part
+        // scann array and skip the already sorted part (i starts from current i + 1 to (length -1))
         private int IndexOf(int[] arr, int ele, int start)
         {
             for (int i = start + 1; i < arr.Length; i++)
