@@ -11,6 +11,55 @@ namespace CodingChallenge
         {
         }
 
+        public SinglyLinkedListNode MergeListsUsePointers(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
+        {
+            SinglyLinkedListNode curr1 = head1;
+            SinglyLinkedListNode curr2 = head2;
+            SinglyLinkedListNode newHead;
+            SinglyLinkedListNode newCurr;
+            if (curr1.Data <= curr2.Data)
+            {
+                newHead = head1;
+                curr1 = curr1.Next;
+            }
+            else
+            {
+                newHead = head2;
+                curr2 = curr2.Next;
+            }
+            newCurr = newHead;
+            while (curr1 != null || curr2 != null)
+            {
+                if (curr1 == null)
+                {
+                    newCurr.Next = curr2;
+                    break;
+                }
+                if (curr2 == null)
+                {
+                    newCurr.Next = curr1;
+                    break;
+                }
+
+                if (curr1.Data <= curr2.Data)
+                {
+                    newCurr.Next = curr1;
+                    curr1 = curr1.Next;
+                    newCurr = newCurr.Next;
+                }
+
+                else
+                {
+                    newCurr.Next = curr2;
+                    curr2 = curr2.Next;
+                    newCurr = newCurr.Next;
+                }
+            }
+
+            return newHead;
+        }
+
+
         public SinglyLinkedListNode MergeListsUseQueue(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
         {
             SinglyLinkedListNode curr1 = head1;

@@ -30,6 +30,27 @@ namespace MSTest
             Assert.AreEqual(result.Trim(), expected);
         }
 
+        [DataTestMethod]
+        [DynamicData(nameof(Data), DynamicDataSourceType.Property)]
+        public void TestMethod2(string list1, string list2, string expected)
+        {
+            int[] arr1 = Array.ConvertAll(list1.Split(' '), temp => Convert.ToInt32(temp));
+            int[] arr2 = Array.ConvertAll(list2.Split(' '), temp => Convert.ToInt32(temp));
+            SinglyLinkedListNode sln = new SinglyLinkedListNode();
+            SinglyLinkedListNode head1 = sln.GenerateSinglyLinkedListNodes(arr1);
+            SinglyLinkedListNode head2 = sln.GenerateSinglyLinkedListNodes(arr2);
+
+            MergeTwoSortedLinkedLists mts = new MergeTwoSortedLinkedLists();
+            SinglyLinkedListNode merged = mts.MergeListsUsePointers(head1, head2);
+            string result = "";
+            while (merged != null)
+            {
+                result = result + merged.Data.ToString() + " ";
+                merged = merged.Next;
+            }
+            Assert.AreEqual(result.Trim(), expected);
+        }
+
         public static IEnumerable<object[]> Data
         {
             get
