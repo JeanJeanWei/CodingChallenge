@@ -11,7 +11,7 @@ namespace MSTest
     {
         [DataTestMethod]
         [DynamicData(nameof(Data), DynamicDataSourceType.Property)]
-        public void TestMethod1(string list1, string list2, string expected)
+        public void TestMethod_Queue(string list1, string list2, string expected)
         {
             int[] arr1 = Array.ConvertAll(list1.Split(' '), temp => Convert.ToInt32(temp));
             int[] arr2 = Array.ConvertAll(list2.Split(' '), temp => Convert.ToInt32(temp));
@@ -32,7 +32,7 @@ namespace MSTest
 
         [DataTestMethod]
         [DynamicData(nameof(Data), DynamicDataSourceType.Property)]
-        public void TestMethod2(string list1, string list2, string expected)
+        public void TestMethod_Pointers(string list1, string list2, string expected)
         {
             int[] arr1 = Array.ConvertAll(list1.Split(' '), temp => Convert.ToInt32(temp));
             int[] arr2 = Array.ConvertAll(list2.Split(' '), temp => Convert.ToInt32(temp));
