@@ -16,8 +16,8 @@ namespace MSTest
             int[] arr1 = Array.ConvertAll(list1.Split(' '), temp => Convert.ToInt32(temp));
             int[] arr2 = Array.ConvertAll(list2.Split(' '), temp => Convert.ToInt32(temp));
             SinglyLinkedListNode sln = new SinglyLinkedListNode();
-            SinglyLinkedListNode head1 = sln.GenerateSinglyLinkedListNodes(arr1);
-            SinglyLinkedListNode head2 = sln.GenerateSinglyLinkedListNodes(arr2);
+            SinglyLinkedListNode head1 = sln.GenerateSinglyLinkedList(arr1);
+            SinglyLinkedListNode head2 = sln.GenerateSinglyLinkedList(arr2);
 
             MergeTwoSortedLinkedLists mts = new MergeTwoSortedLinkedLists();
             SinglyLinkedListNode merged = mts.MergeListsUseQueue(head1, head2);
@@ -37,8 +37,8 @@ namespace MSTest
             int[] arr1 = Array.ConvertAll(list1.Split(' '), temp => Convert.ToInt32(temp));
             int[] arr2 = Array.ConvertAll(list2.Split(' '), temp => Convert.ToInt32(temp));
             SinglyLinkedListNode sln = new SinglyLinkedListNode();
-            SinglyLinkedListNode head1 = sln.GenerateSinglyLinkedListNodes(arr1);
-            SinglyLinkedListNode head2 = sln.GenerateSinglyLinkedListNodes(arr2);
+            SinglyLinkedListNode head1 = sln.GenerateSinglyLinkedList(arr1);
+            SinglyLinkedListNode head2 = sln.GenerateSinglyLinkedList(arr2);
 
             MergeTwoSortedLinkedLists mts = new MergeTwoSortedLinkedLists();
             SinglyLinkedListNode merged = mts.MergeListsUsePointers(head1, head2);

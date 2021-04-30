@@ -8,10 +8,14 @@ namespace CodingChallenge.DataModel
 
         public SinglyLinkedListNode()
         {
-
         }
 
-        public SinglyLinkedListNode GenerateSinglyLinkedListNodes(int[] arr)
+        public SinglyLinkedListNode(int data)
+        {
+            _data = data;
+        }
+
+        public SinglyLinkedListNode GenerateSinglyLinkedList(int[] arr)
         {
             SinglyLinkedListNode head = null;
             if (arr == null || arr.Length == 0)
@@ -37,10 +41,7 @@ namespace CodingChallenge.DataModel
             return head;
         }
 
-        public SinglyLinkedListNode(int data)
-        {
-            _data = data;
-        }
+        
 
         public int Data   // property
         {
