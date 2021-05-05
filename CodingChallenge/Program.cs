@@ -1,4 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json.Linq;
+
+
 
 namespace CodingChallenge
 {
@@ -6,13 +12,21 @@ namespace CodingChallenge
     {
         static void Main(string[] args)
         {
-           // LeftRotation leftRotation = new LeftRotation();
-           //leftRotation.TestCase2();
+           
+            //dynamic stuff = JsonConvert.DeserializeObject("{ 'Name': 'Jon Smith', 'Address': { 'City': 'New York', 'State': 'NY' }, 'Age': 42 }");
 
-            //MinimumBribes minimumBribes = new MinimumBribes();
-            //minimumBribes.TestCase1();
+            //string name = stuff.Name;
+            //string address = stuff.Address.City;
+
+            dynamic stuff = JObject.Parse("{ 'Name': 'Jon Smith', 'Address': { 'City': 'New York', 'State': 'NY' }, 'Age': 42 }");
+
+            string name = stuff.Name;
+            string address = stuff.Address.City;
+
+           
         }
 
+        
 
     }
 }
