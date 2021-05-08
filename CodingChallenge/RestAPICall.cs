@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -26,9 +27,26 @@ namespace CodingChallenge
             return result;
         }
 
-        public dynamic GetRestObjects(string url)
+        public dynamic GetRestObjects(string url, Dictionary<string, string> parameters = null)
         {
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
+
+            Uri uri = new Uri(url);
+            if (parameters != null && parameters.Count > 0)
+            {
+                var stringBuilder = new StringBuilder();
+                string str = "?";
+                foreach(string key in parameters.Keys)
+                {
+                    stringBuilder.Append(str +
+                        WebUtility.UrlEncode(key) +
+                         "=" + WebUtility.UrlEncode(parameters[key]));
+                    str = "&";
+                }
+
+                uri = new Uri(url + stringBuilder.ToString());
+            }
+            
+            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(uri);
             webrequest.Method = "GET";
             webrequest.ContentType = "application/x-www-form-urlencoded";
             HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
@@ -37,8 +55,8 @@ namespace CodingChallenge
             string result = string.Empty;
             result = responseStream.ReadToEnd();
             webresponse.Close();
-            dynamic d = JObject.Parse(result);
-            return d;
+            JArray array = JArray.Parse(result);
+            return array;
         }
     }
 }

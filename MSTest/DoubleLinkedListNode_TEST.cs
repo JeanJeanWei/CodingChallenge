@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MSTest
 {
+    [TestClass]
     public class DoubleLinkedListNode_TEST
     {
         [DataTestMethod]
