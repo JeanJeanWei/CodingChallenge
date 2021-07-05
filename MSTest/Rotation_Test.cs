@@ -24,6 +24,22 @@ namespace MSTest
             
         }
 
+        [DataTestMethod]
+        [DynamicData(nameof(Data), DynamicDataSourceType.Property)]
+        public void TestMethod_R1(string list, int k, string expected)
+        {
+            int[] arr1 = Array.ConvertAll(list.Split(','), temp => Convert.ToInt32(temp));
+            int[] result = Array.ConvertAll(expected.Split(','), temp => Convert.ToInt32(temp));
+            RightRotation rr = new RightRotation();
+            rr.Rotate(arr1, k);
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                Assert.AreEqual(result[i], arr1[i]);
+            }
+
+        }
+
         public static IEnumerable<object[]> Data
         {
             get
