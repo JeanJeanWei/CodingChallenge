@@ -72,5 +72,46 @@ namespace CodingChallenge
             }
             return exist;
         }
+
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            // sort
+            // pick 2th
+            // hash find next
+            // skip
+            var result = new List<IList<int>>();
+            if (nums == null || nums.Length == 0) return result;
+
+            var n = nums.Length;
+
+            Array.Sort(nums);
+
+            var hash = new HashSet<int>(nums);
+
+            for (int i = 0; i < n - 2; i++)
+            {
+                if (i > 0 && nums[i] == nums[i - 1])
+                {
+                    continue;
+                }
+                for (int j = i + 1; j < n - 1; j++)
+                {
+                    if (j > i + 1 && nums[j] == nums[j - 1])
+                    {
+                        continue;
+                    }
+                    int t = 0 - nums[i] - nums[j];
+                    if (t > nums[j] && hash.Contains(t))
+                    {
+                        result.Add(new[] { nums[i], nums[j], t });
+                    }
+                    else if (t == nums[j] && nums[j + 1] == t)
+                    {
+                        result.Add(new[] { nums[i], t, t });
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
