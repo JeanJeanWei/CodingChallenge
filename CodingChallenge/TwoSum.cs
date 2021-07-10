@@ -23,29 +23,33 @@ namespace CodingChallenge
          *  3. iterate the whole arry to get the result    
          */
 
-        public int[] TwoSumReturnPositions(int[] nums, int target)
+        public int[] TwoSumPosition(int[] nums, int target)
         {
-            Dictionary<int, int> visitedDictionary = new Dictionary<int, int>();
+
+            var numsDic = new Dictionary<int, int>();
 
             // create int array for return 
             int[] ret = new int[2];
+            if (nums == null || nums.Length < 2)
+                return ret;
+
             // loop through the arry to perform the calculation
             for (int i = 0; i < nums.Length; i++)
             {
                 var num = nums[i];
-
                 var e = target - num;
-                bool found = visitedDictionary.Values.Contains(e);
-                if (found)
+                if (numsDic.ContainsKey(e))
                 {
                     //Console.WriteLine(i + " " + e);
                     ret[0] = i;
-                    var temp = visitedDictionary.FirstOrDefault(x => x.Value == e).Key;
-                    ret[1] = temp;
+                    //Console.WriteLine(numsDic[1]);
+                    ret[1] = numsDic[e];
                     break;
                 }
-
-                visitedDictionary.Add(i, num);
+                else
+                {
+                    numsDic.Add(nums[i], i);
+                }
             }
             return ret;
         }
