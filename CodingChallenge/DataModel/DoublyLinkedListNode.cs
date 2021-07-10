@@ -84,6 +84,10 @@ namespace CodingChallenge.DataModel
                 temp.Next = temp.Prev;
                 newCurr.Next = temp;
                 newCurr = newCurr.Next;
+                if (i == n - 2)
+                {
+                    newCurr.Next = null;
+                }
             }
             return newHead;
         }

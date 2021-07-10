@@ -15,12 +15,12 @@ namespace MSTest
             int[] arr1 = Array.ConvertAll(input.Split(' '), temp => Convert.ToInt32(temp));
             DoublyLinkedListNode sln = new DoublyLinkedListNode();
             DoublyLinkedListNode head = sln.GenerateDoubleLinkedList(arr1);
-            sln.Reverse(head);
+            var newHead = sln.Reverse(head);
             string result = "";
-            while (head != null)
+            while (newHead != null)
             {
-                result = result + head.Data.ToString() + " ";
-                head = head.Next;
+                result = result + newHead.Data.ToString() + " ";
+                newHead = newHead.Next;
             }
             Assert.AreEqual(result.Trim(), expected);
         }

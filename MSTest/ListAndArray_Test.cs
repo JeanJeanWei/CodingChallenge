@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSTest
 {
     [TestClass]
-    public class Lists_Test
+    public class ListAndArray_Test
     {
         [DataTestMethod]
         [DynamicData(nameof(Data), DynamicDataSourceType.Property)]
@@ -15,7 +15,7 @@ namespace MSTest
         {
             int[] arr1 = Array.ConvertAll(list.Split(','), temp => Convert.ToInt32(temp));
             var l = arr1.ToList();
-            Lists ls = new Lists();
+            var ls = new ArrayQuest();
             var unique = ls.UniqueList(l);
             Assert.AreEqual(unique.Count, expected);
         }
