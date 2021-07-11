@@ -115,6 +115,7 @@ namespace CodingChallenge
             return count;
         }
 
+        // 
         public int FirstUniqChar(string s)
         {
             var map = new Dictionary<char, int>();
@@ -186,6 +187,39 @@ namespace CodingChallenge
                 l.Insert(0, 1);
             }
             return l.ToArray();
+        }
+
+        public string RemoveOuterParentheses(string S)
+        {
+            Queue<char> q = new Queue<char>();
+            string output = String.Empty;
+
+            int c = 0;
+            foreach (char p in S)
+            {
+                if (p == '(')
+                {
+                    c++;
+                    q.Enqueue(p);
+                }
+                else
+                {
+                    c--;
+                    q.Enqueue(p);
+                }
+
+                if (c == 0)
+                {
+                    q.Dequeue();
+                    int n = q.Count;
+                    for (int i = 0; i < n - 1; i++)
+                    {
+                        output = output + q.Dequeue();
+                    }
+                    q.Dequeue();
+                }
+            }
+            return output;
         }
     }
 }

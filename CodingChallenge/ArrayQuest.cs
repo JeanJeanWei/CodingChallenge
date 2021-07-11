@@ -145,5 +145,21 @@ namespace CodingChallenge
             }
             return output.ToArray();
         }
+
+        public int MissingNumber(int[] nums)
+        {
+
+            if (nums == null || nums.Length == 0) return 0;
+
+            int posTotal = nums.Length;
+            int numTotal = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                posTotal += i;
+                numTotal += nums[i];
+            }
+            var diff = posTotal - numTotal;
+            return diff;
+        }
     }
 }
