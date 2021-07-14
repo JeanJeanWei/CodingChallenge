@@ -20,6 +20,15 @@ namespace MSTest
             Assert.AreEqual(unique.Count, expected);
         }
 
+        [DataTestMethod]
+        [DynamicData(nameof(Data1), DynamicDataSourceType.Property)]
+        public void LengthOfLongestSubstring_Test(string s, int expected)
+        { 
+            var ls = new ArrayQuest2();
+            var result = ls.LengthOfLongestSubstring(s);
+            Assert.AreEqual(result, expected);
+        }
+
         public static IEnumerable<object[]> Data
         {
             get
@@ -28,6 +37,20 @@ namespace MSTest
                 {
                     new object[] { "1,2,3,4,5,6,7,7,6,5,0", 8},
 
+                };
+            }
+        }
+
+        public static IEnumerable<object[]> Data1
+        {
+            get
+            {
+                return new[]
+                {
+                    new object[] { "abcabcbb", 3},
+                    new object[] { "bbbbb", 1},
+                    new object[] { "pwwkew", 3},
+                    new object[] { "", 0},
                 };
             }
         }

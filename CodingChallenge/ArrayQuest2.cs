@@ -74,5 +74,34 @@ namespace CodingChallenge
 
             return map.Values.ToList();
         }
+
+        public int LengthOfLongestSubstring(string s)
+        {
+
+            int n = s.Length;
+            if (s == null || n == 0) return 0;
+            if (n == 1) return 1;
+
+            HashSet<char> set = new HashSet<char>();
+            int currentMax = 0;
+            int i = 0;
+            int j = 0;
+
+            while (j < s.Length)
+            {
+                if (!set.Contains(s[j]))
+                {
+                    set.Add(s[j]);
+                    j++;
+                    currentMax = currentMax > j - i ? currentMax : j - i;
+                }
+                else
+                {
+                    set.Remove(s[i]);
+                    i++;
+                }
+            }
+            return currentMax;
+        }
     }
 }
